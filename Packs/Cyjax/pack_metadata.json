@@ -1,0 +1,19 @@
+{
+    "name": "Cyjax",
+    "description": "Cyjax integration with XSOAR to fetch incident reports and indicators of compromise.",
+    "support": "developer",
+    "currentVersion": "1.0.0",
+    "author": "Jakub Orzol",
+    "url": "https://www.cyjax.com",
+    "email": "devs@cyjax.com",
+    "created": "2020-12-04T14:45:28Z",
+    "categories": [
+        "Data Enrichment & Threat Intelligence"
+    ],
+    "tags": [
+        "Threat Intelligence"
+    ],
+    "useCases": [],
+    "keywords": [],
+    "githubUser": []
+}
