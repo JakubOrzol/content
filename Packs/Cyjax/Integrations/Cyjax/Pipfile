@@ -13,6 +13,7 @@ pytest-asyncio = "*"
 [packages]
 pytest = "*"
 requests = "*"
+cyjax-cti = "*"
 
 [requires]
 python_version = "3.7"
