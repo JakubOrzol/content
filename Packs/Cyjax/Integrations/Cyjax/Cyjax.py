@@ -10,7 +10,7 @@ import dateparser
 import traceback
 from typing import Any, Dict, Tuple, List, Optional, Union, cast
 
-import cyjax
+import cyjax as cyjax_sdk
 
 # Disable insecure warnings
 urllib3.disable_warnings()
@@ -40,13 +40,13 @@ class Client(object):
         """Set Cyjax SDK
         :return: None
         """
-        cyjax.api_key = self.__api_key
+        cyjax_sdk.api_key = self.__api_key
 
         if self.__base_url:
-            cyjax.api_url = self.__base_url
+            cyjax_sdk.api_url = self.__base_url
 
         if self.__proxies:
-            cyjax.proxy_settings = self.__proxies
+            cyjax_sdk.proxy_settings = self.__proxies
 
 
     def say_hello(self, name: str) -> str:
@@ -70,7 +70,7 @@ class Client(object):
         error_msg = 'Not responding'
 
         try:
-            reports = cyjax.IncidentReport().list(since=datetime.timedelta(minutes=5))
+            reports = cyjax_sdk.IncidentReport().list(since=datetime.timedelta(minutes=5))
             result = True
         except Exception as e:
             error_msg = str(e)
@@ -92,8 +92,8 @@ class Client(object):
         """
         since = datetime.datetime.utcfromtimestamp(last_run)
 
-        # incidnet_reports = cyjax.IncidentReport().list(since=since) #todo: uncomment this
-        incidnet_reports = [self.fetch_incident_by_id(1)]
+        incidnet_reports = cyjax_sdk.IncidentReport().list(since=since) #todo: uncomment this
+        # incidnet_reports = [self.fetch_incident_by_id(1)]
 
         return incidnet_reports
 
@@ -142,6 +142,11 @@ class Client(object):
                 "software": [],
                 "ioc": []
             }
+
+        try:
+            incident = cyjax_sdk.IncidentReport().one(incident_id) #todo: uncomment this
+        except Exception as e:
+            incident = None  # Incident not found
 
         return incident
 
@@ -226,7 +231,6 @@ def get_incidents_last_fetch_timestamp() -> int:
     return int(last_fetch_timestamp)
 
 
-''' COMMAND FUNCTIONS '''
 
 
 def test_module(client: Client) -> str:
@@ -297,13 +301,11 @@ def fetch_incidents(client: Client, last_run: int, limit: int) -> Tuple[Dict[str
             'rawJSON': json.dumps(incident_report),
             'severity': convert_severity(incident_report['severity']),
         }
-        # incidents.append(incident)
+        incidents.append(incident)
 
         # Update last run and add incident if the incident is newer than last fetch
         if incident_timestamp > last_run:
             last_run = incident_timestamp
-
-    demisto.info('------------------------------------ Setting incidents {}'.format(incidents))
 
     next_run = {INCIDENTS_LAST_FETCH_KEY: last_run}
     return next_run, incidents
@@ -325,7 +327,7 @@ def get_incident_command(client: Client, args: Dict[str, Any]) -> Optional[Dict[
     if not incident_id:
         raise ValueError('ID not specified')
 
-    incident = client.fetch_incident_by_id(incident_id)
+    incident = client.fetch_incident_by_id(int(incident_id))
 
     if incident:
         return {
@@ -363,13 +365,6 @@ def main() -> None:
 
         if demisto.command() == 'test-module':
             return_results(test_module(client))
-
-        elif demisto.command() == 'cyjax-fetch-incidents': #todo: DELETE THAT AFTER DEVELOPING
-            last_fetch_timestamp = get_incidents_last_fetch_timestamp()  # type:int
-            limit = min(MAX_INCIDENTS_TO_FETCH, int(demisto.params().get('max_fetch', MAX_INCIDENTS_TO_FETCH)))
-            next_run, incidents = fetch_incidents(client, last_fetch_timestamp)
-            demisto.setLastRun(next_run)
-            demisto.incidents(incidents)
 
         elif demisto.command() == 'fetch-incidents':
             last_fetch_timestamp = get_incidents_last_fetch_timestamp()  # type:int

@@ -51,8 +51,6 @@ configuration:
   type: 8
 script:
   commands:
-    - name: cyjax-fetch-incidents
-      description: Trigger fetching incidents
     - name: cyjax-get-incident
       description: Get incident report by id
       arguments:
@@ -66,7 +64,7 @@ script:
           description: Your name
       description: Demo comand
 #  dockerimage: cyjax_first
-  dockerimage: demisto/python3:3.8.6.13358
+  dockerimage: demisto/python3:3.8.6.14516
   feed: false
   isfetch: true
   longRunning: false
