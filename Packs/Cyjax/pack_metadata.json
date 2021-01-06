@@ -1,6 +1,6 @@
 {
     "name": "Cyjax",
-    "description": "Cyjax integration with XSOAR to fetch incident reports and indicators of compromise.",
+    "description": "The product allows customers to pull threat landscape reports and retrieve indicators of compromise from cyber incidents (IP addresses, URLs, hostnames, domains, CVE and file hashes)",
     "support": "developer",
     "currentVersion": "1.0.0",
     "author": "Jakub Orzol",

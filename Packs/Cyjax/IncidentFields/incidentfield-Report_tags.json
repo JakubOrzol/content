@@ -1,0 +1,42 @@
+{
+    "associatedToAll": false,
+    "associatedTypes": [
+        "Cyjax Incident Report"
+    ],
+    "caseInsensitive": true,
+    "cliName": "reporttags",
+    "closeForm": false,
+    "content": true,
+    "editForm": true,
+    "group": 0,
+    "hidden": false,
+    "id": "incident_reporttags",
+    "isReadOnly": false,
+    "locked": false,
+    "name": "Report tags",
+    "neverSetAsRequired": false,
+    "ownerOnly": false,
+    "required": false,
+    "selectValues": [
+        "Amazon",
+        "Corporate espionage",
+        "email address",
+        "EMEA",
+        "Europe",
+        "global",
+        "inside threat",
+        "Leaks",
+        "phone number",
+        "UK",
+        "unauthorised access"
+    ],
+    "sla": 0,
+    "system": false,
+    "threshold": 72,
+    "type": "tagsSelect",
+    "unmapped": false,
+    "unsearchable": false,
+    "useAsKpi": false,
+    "version": -1,
+    "fromVersion": "5.0.0"
+}

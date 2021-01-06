@@ -1,0 +1,23 @@
+{
+    "autorun": true,
+    "color": "#CE4D5A",
+    "days": 1,
+    "daysR": 0,
+    "default": false,
+    "disabled": false,
+    "hours": 0,
+    "hoursR": 0,
+    "id": "Cyjax Incident Report",
+    "layout": "5ee91ee0-7d2a-4b54-8d47-d884504847d1",
+    "locked": false,
+    "name": "Cyjax Incident Report",
+    "playbookId": "cyjaxIncidentReportPlaybook0",
+    "readonly": false,
+    "reputationCalc": 0,
+    "sla": 24,
+    "system": false,
+    "version": -1,
+    "weeks": 0,
+    "weeksR": 0,
+    "fromVersion": "6.0.0"
+}

@@ -1,0 +1,327 @@
+{
+    "description": "",
+    "feed": false,
+    "id": "1b99fdc9-4900-447f-8856-808fe3b68adc",
+    "mapping": {
+        "Cyjax Incident Report": {
+            "dontMapEventToLabels": false,
+            "internalMapping": {
+                "Country": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+                            [
+                                {
+                                    "ignoreCase": false,
+                                    "left": {
+                                        "isContext": true,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": "countries"
+                                        }
+                                    },
+                                    "operator": "isNotEmpty",
+                                    "right": null
+                                }
+                            ]
+                        ],
+                        "root": "countries",
+                        "transformers": [
+                            {
+                                "args": {
+                                    "separator": {
+                                        "isContext": false,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": ", "
+                                        }
+                                    }
+                                },
+                                "operator": "join"
+                            }
+                        ]
+                    },
+                    "simple": ""
+                },
+                "Discovered date": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+                            [
+                                {
+                                    "ignoreCase": false,
+                                    "left": {
+                                        "isContext": true,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": "discovered_at"
+                                        }
+                                    },
+                                    "operator": "isNotEmpty",
+                                    "right": null
+                                }
+                            ]
+                        ],
+                        "root": "discovered_at",
+                        "transformers": [
+
+                        ]
+                    },
+                    "simple": ""
+                },
+                "Handling condition": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+                            [
+                                {
+                                    "ignoreCase": false,
+                                    "left": {
+                                        "isContext": true,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": "handling_condition"
+                                        }
+                                    },
+                                    "operator": "isNotEmpty",
+                                    "right": null
+                                }
+                            ]
+                        ],
+                        "root": "handling_condition",
+                        "transformers": [
+
+                        ]
+                    },
+                    "simple": ""
+                },
+                "Impacts": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+
+                        ],
+                        "root": "impacts",
+                        "transformers": [
+                            {
+                                "args": {
+
+                                },
+                                "operator": "ConvertKeysToTableFieldFormat"
+                            }
+                        ]
+                    },
+                    "simple": ""
+                },
+                "MITRE software": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+                            [
+                                {
+                                    "ignoreCase": false,
+                                    "left": {
+                                        "isContext": true,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": "software"
+                                        }
+                                    },
+                                    "operator": "isNotEmpty",
+                                    "right": null
+                                }
+                            ]
+                        ],
+                        "root": "software",
+                        "transformers": [
+
+                        ]
+                    },
+                    "simple": ""
+                },
+                "MITRE techniques": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+                            [
+                                {
+                                    "ignoreCase": false,
+                                    "left": {
+                                        "isContext": true,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": "techniques"
+                                        }
+                                    },
+                                    "operator": "isNotEmpty",
+                                    "right": null
+                                }
+                            ]
+                        ],
+                        "root": "techniques",
+                        "transformers": [
+
+                        ]
+                    },
+                    "simple": ""
+                },
+                "Report tags": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+                            [
+                                {
+                                    "ignoreCase": false,
+                                    "left": {
+                                        "isContext": true,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": "tags"
+                                        }
+                                    },
+                                    "operator": "isNotEmpty",
+                                    "right": null
+                                }
+                            ]
+                        ],
+                        "root": "tags",
+                        "transformers": [
+                            {
+                                "args": {
+                                    "separator": {
+                                        "isContext": false,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": ", "
+                                        }
+                                    }
+                                },
+                                "operator": "join"
+                            }
+                        ]
+                    },
+                    "simple": ""
+                },
+                "Source evaluation": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+
+                        ],
+                        "root": "source_evaluation",
+                        "transformers": [
+                            {
+                                "args": {
+                                    "limit": {
+                                        "isContext": false,
+                                        "value": null
+                                    },
+                                    "replaceWith": {
+                                        "isContext": false,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": " "
+                                        }
+                                    },
+                                    "toReplace": {
+                                        "isContext": false,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": "-"
+                                        }
+                                    }
+                                },
+                                "operator": "replace"
+                            },
+                            {
+                                "args": {
+
+                                },
+                                "operator": "toUpperCase"
+                            }
+                        ]
+                    },
+                    "simple": ""
+                },
+                "Techniques": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+                            [
+                                {
+                                    "ignoreCase": false,
+                                    "left": {
+                                        "isContext": true,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": "techniques"
+                                        }
+                                    },
+                                    "operator": "isNotEmpty",
+                                    "right": null
+                                }
+                            ]
+                        ],
+                        "root": "techniques",
+                        "transformers": [
+
+                        ]
+                    },
+                    "simple": ""
+                },
+                "impact-test-1": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+                            [
+                                {
+                                    "ignoreCase": false,
+                                    "left": {
+                                        "isContext": true,
+                                        "value": {
+                                            "complex": null,
+                                            "simple": "impacts"
+                                        }
+                                    },
+                                    "operator": "isNotEmpty",
+                                    "right": null
+                                }
+                            ]
+                        ],
+                        "root": "impacts",
+                        "transformers": [
+
+                        ]
+                    },
+                    "simple": ""
+                },
+                "severity": {
+                    "complex": {
+                        "accessor": "",
+                        "filters": [
+
+                        ],
+                        "root": "severity",
+                        "transformers": [
+
+                        ]
+                    },
+                    "simple": ""
+                }
+            }
+        },
+        "dbot_classification_incident_type_all": {
+            "dontMapEventToLabels": false,
+            "internalMapping": {
+                "Event ID": {
+                    "complex": null,
+                    "simple": "id"
+                }
+            }
+        }
+    },
+    "name": "Cyjax Incident Report Mapping",
+    "type": "mapping-incoming",
+    "version": -1,
+    "fromVersion": "6.0.0"
+}

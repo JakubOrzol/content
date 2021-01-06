@@ -1,38 +1,30 @@
-display: Cyjax
-name: Cyjax
 category: Data Enrichment & Threat Intelligence
 commonfields:
   id: Cyjax
   version: -1
-description: Cyjax integration with XSOAR to fetch incident reports and indicators
-  of compromise.
-detaileddescription: |-
-  ## API KEY
-  - This section explains how to obtain Cyjax API KEY to configure integration with Cortex XSOAR.
-  1. Go to Cyjax portal, click on the profile icon in top-right corner and click on Developer settings.
-  2. In the Personal access token tab, click on Generate new token button.
 configuration:
-- defaultvalue: https://api.cyberportal.co
+- additionalinfo: Url to Cyjax API.
+  defaultvalue: https://api.cyberportal.co
   display: Cyjax API URL
   name: url
-  additionalinfo: Url to Cyjax API.
   required: true
   type: 0
-- display: API Key
+- additionalinfo: Cyjax API Key obtained from Cyjax portal.
+  display: API Key
   name: apikey
-  additionalinfo: Cyjax API Key obtained from Cyjax portal.
   required: true
   type: 4
 - display: Fetch incidents
   name: isFetch
   required: false
   type: 8
-- defaultvalue: '50'
+- defaultvalue: "50"
   display: Maximum number of incidents per fetch
   name: max_fetch
   required: false
   type: 0
-- display: Incident type
+- defaultvalue: Cyjax Incident Report
+  display: Incident type
   name: incidentType
   required: false
   type: 13
@@ -49,28 +41,64 @@ configuration:
   name: proxy
   required: false
   type: 8
+description: Cyjax integration with XSOAR to fetch incident reports and indicators
+  of compromise.
+display: Cyjax
+name: Cyjax
 script:
   commands:
-    - name: cyjax-get-incident
-      description: Get incident report by id
-      arguments:
-        - name: id
-          description: Identifier of the incident
-          required: true
-    - name: cyjax-say-hello
-      arguments:
-        - name: name
-          required: true
-          description: Your name
-      description: Demo comand
-#  dockerimage: cyjax_first
-  dockerimage: demisto/python3:3.8.6.14516
-  feed: false
+  - arguments:
+    - description: Identifier of the incident
+      name: id
+      required: true
+    description: Get incident report by id
+    name: cyjax-get-incident
+  - arguments: []
+    description: Get Cyjax incident report id for the current incident
+    name: cyjax-get-incident-report-id
+  - arguments:
+    - description: Identifier of the my report
+      name: id
+      required: true
+    description: Get my report by id
+    name: cyjax-get-my-report
+  - arguments:
+    - description: XSOAR incident identifier. If not provided, use incident from current
+        context.
+      name: id
+    description: Get indicators for incident report.
+    name: cyjax-get-incident-indicators
+  - arguments:
+    - description: Indicator value
+      name: value
+      required: true
+    description: Get sighting of indicator
+    name: cyjax-indicator-sighting
+  - arguments:
+    - description: Threat actor name
+      name: name
+      required: true
+    description: Search threat actor by name
+    name: cyjax-search-threat-actor
+  - arguments:
+    - description: Threat actor name
+      name: name
+      required: true
+    description: Get threat actor by name
+    name: cyjax-get-threat-actor
+  - arguments:
+    - description: Your name
+      name: name
+      required: true
+    description: Demo comand
+    name: cyjax-say-hello
+#  dockerimage: cyjax_second
+  dockerimage: demisto/python3:3.9.1.14969
   isfetch: true
-  longRunning: false
-  longRunningPort: false
   runonce: false
-  script: '-'
+  script: ''
   subtype: python3
   type: python
 fromversion: 5.0.0
+tests:
+- No tests (auto formatted)
